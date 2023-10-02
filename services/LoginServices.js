@@ -1,10 +1,14 @@
 import { DOMEventController } from '../controller/DOMEventController.js';
+import { ModalController } from '../controller/ModalController.js';
+// Ajusta la ruta según tu estructura.
 // Ajusta la ruta según tu estructura.
 import { ApiClientModel } from '../models/ApiClientModel.js';
 
 // Aquí va el código de LoginServices.js
 const $ = selector => new DOMEventController(selector);
 const api = new ApiClientModel();  // No necesitas un token al principio
+// Instanciamos el controlador para que se aplique a los modales en la página
+const modal = new ModalController();
 
 $('#loginButton').click(async () => {
     const body = {
@@ -17,11 +21,13 @@ $('#loginButton').click(async () => {
 
         if (response.status) {
             localStorage.setItem('authToken', response.access_token);
+
             console.log(response.msg);
         } else {
-            console.error(response.msg);
+            modal.openModal("informative", response)
         }
     } catch (error) {
+
         console.error("Error al iniciar sesión:", error.message);
     }
 });
