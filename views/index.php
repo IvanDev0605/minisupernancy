@@ -228,6 +228,7 @@
         </section>
 
         <?php include("layouts/footer.html") ?>
+        <?php include("components/modal.html") ?>
 
     </div>
 </body>
