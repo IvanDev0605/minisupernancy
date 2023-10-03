@@ -3,7 +3,6 @@ const $ = selector => new DOMEventController(selector);
 
 export class ModalController {
     constructor() {
-        this.initModalClosers();
         this.header = $(".modal-card-head");
         this.modalTitle = $(".modal-card-title");
         this.body = $(".modal-card-body");
@@ -43,6 +42,7 @@ export class ModalController {
         // Setear la información en el contenido del modal
         this.setTitle(body.status)
         this.setBody(body)
+        this.setButtonModal();
 
     }
 
@@ -78,6 +78,26 @@ export class ModalController {
 
     }
 
-    setBtn() {
+    setButtonModal() {
+        // Obtener el contenedor de los botones
+        const footer = this.footer.getFirstElement();
+
+
+        // Limpiar el contenedor de botones existentes
+        while (footer.firstChild) {
+            footer.removeChild(footer.firstChild);
+        }
+        // Crear y agregar el botón "Aceptar"
+        const acceptButton = document.createElement('button');
+        acceptButton.className = 'button is-success jb-modal-close';
+        acceptButton.textContent = 'Aceptar';
+        footer.appendChild(acceptButton);
+
+        // Crear y agregar el botón "Cerrar"
+        const closeButton = document.createElement('button');
+        closeButton.className = 'button jb-modal-close';
+        closeButton.textContent = 'Cerrar';
+        footer.appendChild(closeButton);
+        this.initModalClosers();
     }
 }
