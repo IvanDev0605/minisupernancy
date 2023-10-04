@@ -21,7 +21,7 @@ $('#loginButton').click(async () => {
 
         if (response.status) {
             localStorage.setItem('authToken', response.access_token);
-
+            window.location.href = "views/index.php";
             console.log(response.msg);
         } else {
             modal.openModal("informative", response)
