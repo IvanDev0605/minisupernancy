@@ -4,43 +4,12 @@ export class ApiClientModel {
         this.token = token;
     }
 
-    async getCsrfCookie() {
-        const response = await fetch(`${this.baseUrl}sanctum/csrf-cookie`, {
-            method: 'GET',
-            credentials: 'include'  // Importante para enviar y recibir cookies
-        });
-        if (!response.ok) {
-            throw new Error(`Failed to get CSRF cookie: ${response.statusText}`);
-        }
-    }
-
-    getHeaders(body) {
-        const headers = {
-            'Authorization': `Bearer ${this.token}`,
-            'Accept': 'application/json'
-        };
-        if (!(body instanceof FormData)) {
-            headers['Content-Type'] = 'application/json';
-        }
-        return headers;
-    }
-
-    async post(endpoint = '', body = {}) {
-        await this.getCsrfCookie();
-
-        let payload;
-
-        if (body instanceof FormData) {
-            payload = body;
-        } else {
-            payload = JSON.stringify(body);
-        }
-
+    async post(endpoint = '', headers, body = {}) {
         const response = await fetch(`${this.baseUrl}api/${endpoint}`, {
             method: 'POST',
-            headers: this.getHeaders(body),
-            body: payload,
-            credentials: 'include' // De nuevo, importante para las cookies
+            headers,
+            body,
+            credentials: 'include'
         });
 
         if (!response.ok) {
@@ -50,5 +19,5 @@ export class ApiClientModel {
         return await response.json();
     }
 
-    // ... [otros métodos aquí]
+    // ... [otros métodos HTTP aquí]
 }
