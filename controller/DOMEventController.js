@@ -72,6 +72,14 @@ export class DOMEventController {
         return this;  // Permite encadenamiento
     }
 
+    // Método nuevo: Obtener el valor de un atributo del primer elemento
+    getAttribute(attrName) {
+        if (this.elements.length > 0) {
+            return this.elements[0].getAttribute(attrName);
+        }
+        return null;
+    }
+
     // Método nuevo: Eliminar un atributo de los elementos
     removeAttribute(attrName) {
         this.elements.forEach(element => {
@@ -113,4 +121,10 @@ export class DOMEventController {
     getFirstElement() {
         return this.elements.length > 0 ? this.elements[0] : null;
     }
+    // Añade este método a tu clase DOMEventController
+    forEach(callback) {
+        this.elements.forEach(callback);
+        return this;  // Para permitir encadenamiento
+    }
+
 }
