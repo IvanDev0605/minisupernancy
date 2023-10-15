@@ -8,24 +8,23 @@ export class MenuController {
         this.rutaMenu = "../../models/MenuModel.json";
         this.dataMenu;
     }
-
     async buildMenu() {
         await this.getMenu(this.rutaMenu);
 
+        $('.options-list').forEach(menuGroup => {
+            const dataMenu = menuGroup.getAttribute('data-menu');  // Obtener el data-menu del grupo actual
 
-        $(".options-list").forEach(menuGroup => {
-            ["Crear", "Ver", "Eliminar"].forEach(action => {
+            ['Crear', 'Ver', 'Eliminar'].forEach(action => {
                 // Crear un nuevo elemento li por cada acción
-                const elementLI = document.createElement("li");
+                const elementLI = document.createElement('li');
 
                 // Crear el elemento a
-                const elementA = document.createElement("a");
-                elementA.setAttribute("data-click", action + "-" + $(".options-list").getAttribute("data-menu"));
+                const elementA = document.createElement('a');
+                elementA.setAttribute('data-click', action + '-' + dataMenu);  // Usar dataMenu
 
                 // Crear el elemento span y ponerle texto
-                const elementSpan = document.createElement("span");
-                console.log($(".options-list"))
-                elementSpan.textContent = action + " " + $(".options-list").getAttribute("data-menu");  // Puedes cambiar el texto según necesites
+                const elementSpan = document.createElement('span');
+                elementSpan.textContent = action + ' ' + dataMenu;  // Usar dataMenu
 
                 // Añadir el span al elemento a
                 elementA.appendChild(elementSpan);
@@ -35,15 +34,10 @@ export class MenuController {
 
                 // Añadir el li al menuGroup
                 menuGroup.appendChild(elementLI);
-
-
             });
-            console.log(menuGroup); // Si aún quieres hacer un log de la acción
-
         });
-
-
     }
+
 
     async getMenu(ruta) {
         try {
