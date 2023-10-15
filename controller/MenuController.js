@@ -1,59 +1,57 @@
-class SidebarController {
-    constructor(menuData, menuContainer) {
-        this.menuData = menuData;
-        this.menuContainer = menuContainer;
+import { DOMEventController } from '../controller/DOMEventController.js';
+
+const $ = selector => new DOMEventController(selector);
+
+export class MenuController {
+
+    constructor() {
+        this.rutaMenu = "../../models/MenuModel.json";
+        this.dataMenu;
     }
 
-    init() {
-        this.menuData.forEach(menuItem => {
-            const menuElement = this.createMenuElement(menuItem);
-            this.menuContainer.appendChild(menuElement);
-        });
-    }
+    async buildMenu() {
+        await this.getMenu(this.rutaMenu);
 
-    createMenuElement(menuItem) {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.className = 'has-icon has-dropdown-icon';
 
-        const iconSpan = document.createElement('span');
-        iconSpan.className = 'icon';
-        const i = document.createElement('i');
-        i.className = `mdi ${menuItem.icon}`;
-        iconSpan.appendChild(i);
+        $(".options-list").forEach(menuGroup => {
+            ["Crear", "Ver", "Eliminar"].forEach(action => {
+                // Crear un nuevo elemento li por cada acción
+                const elementLI = document.createElement("li");
 
-        const labelSpan = document.createElement('span');
-        labelSpan.className = 'menu-item-label';
-        labelSpan.textContent = menuItem.label;
+                // Crear el elemento a
+                const elementA = document.createElement("a");
+                elementA.setAttribute("data-click", action + "-" + $(".options-list").getAttribute("data-menu"));
 
-        const dropdownIcon = document.createElement('div');
-        dropdownIcon.className = 'dropdown-icon';
-        const dropdownSpan = document.createElement('span');
-        dropdownSpan.className = 'icon';
-        const dropdownI = document.createElement('i');
-        dropdownI.className = 'mdi mdi-plus';
-        dropdownSpan.appendChild(dropdownI);
-        dropdownIcon.appendChild(dropdownSpan);
+                // Crear el elemento span y ponerle texto
+                const elementSpan = document.createElement("span");
+                console.log($(".options-list"))
+                elementSpan.textContent = action + " " + $(".options-list").getAttribute("data-menu");  // Puedes cambiar el texto según necesites
 
-        a.appendChild(iconSpan);
-        a.appendChild(labelSpan);
-        a.appendChild(dropdownIcon);
+                // Añadir el span al elemento a
+                elementA.appendChild(elementSpan);
 
-        const ul = document.createElement('ul');
+                // Añadir el elemento a al li
+                elementLI.appendChild(elementA);
 
-        menuItem.subItems.forEach(subItem => {
-            const subLi = document.createElement('li');
-            const subA = document.createElement('a');
-            subA.href = subItem.route;
-            subA.textContent = subItem.name;
-            subLi.appendChild(subA);
-            ul.appendChild(subLi);
+                // Añadir el li al menuGroup
+                menuGroup.appendChild(elementLI);
+
+
+            });
+            console.log(menuGroup); // Si aún quieres hacer un log de la acción
+
         });
 
-        li.appendChild(a);
-        li.appendChild(ul);
 
-        return li;
     }
 
+    async getMenu(ruta) {
+        try {
+            const response = await fetch(ruta);
+            const data = await response.json();
+            this.dataMenu = data;
+        } catch (error) {
+            console.error('Error al leer el archivo JSON:', error);
+        }
+    }
 }

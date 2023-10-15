@@ -1,4 +1,4 @@
-class RouteController {
+export class RouteController {
   constructor() {
     this.mainSection = document.querySelector('.section.is-main-section');
     this.currentPath = window.location.pathname

@@ -1,0 +1,36 @@
+[
+    {
+        "group": "General",
+        "submenus": {
+            "Dashboard": [
+                "mdi mdi-desktop-mac"
+            ]
+        }
+    },
+    {
+        "group": "Usuario y roles",
+        "submenus": {
+            "usuarios": [
+                "mdi mdi-account-circle"
+            ],
+            "roles": [
+                "mdi mdi-pie-chart"
+            ]
+        }
+    },
+    {
+        "group": "Productos y promociones",
+        "submenus": [
+            "productos",
+            "promociones"
+        ]
+    },
+    {
+        "group": "Marcas, tipos y tamaños",
+        "submenus": [
+            "marcas",
+            "tipos",
+            "tamaños"
+        ]
+    }
+]

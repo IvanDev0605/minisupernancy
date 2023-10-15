@@ -16,7 +16,7 @@
         <p class="menu-label">General</p>
         <ul class="menu-list">
             <li>
-                <a href="index.html" class="is-active router-link-active has-icon">
+                <a data="dashboard" class="is-active router-link-active has-icon">
                     <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
                     <span class="menu-item-label">Dashboard</span>
                 </a>
@@ -25,33 +25,15 @@
         <p class="menu-label">Usuarios y roles</p>
         <ul class="menu-list">
             <li>
-                <a href="page/tables.html" class="has-icon">
-                    <span class="icon has-update-mark"><i class="mdi mdi-table"></i></span>
-                    <span class="menu-item-label">Tables</span>
-                </a>
-            </li>
-            <li>
-                <a href="pages/forms.html" class="has-icon">
-                    <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-                    <span class="menu-item-label">Forms</span>
-                </a>
-            </li>
-            <li>
-                <a href="pages/profile.html" class="has-icon">
-                    <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-                    <span class="menu-item-label">Profile</span>
-                </a>
-            </li>
-            <li>
                 <a class="has-icon has-dropdown-icon">
-                    <span class="icon"><i class="mdi mdi-view-list"></i></span>
-                    <span class="menu-item-label">Submenus</span>
+                    <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+                    <span class="menu-item-label">Usuarios</span>
                     <div class="dropdown-icon">
                         <span class="icon"><i class="mdi mdi-plus"></i></span>
                     </div>
                 </a>
-                <ul>
-                    <li>
+                <ul data-menu="usuario" class="options-list">
+                    <!-- <li>
                         <a href="#void">
                             <span>Sub-item One</span>
                         </a>
@@ -60,24 +42,52 @@
                         <a href="#void">
                             <span>Sub-item Two</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
+            <li>
+                <a class="has-icon has-dropdown-icon">
+                    <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+                    <span class="menu-item-label">Roles</span>
+                    <div class="dropdown-icon">
+                        <span class="icon"><i class="mdi mdi-plus"></i></span>
+                    </div>
+                </a>
+                <ul class="options-list" data-menu="rol">
+
+                </ul>
+            </li>
+
         </ul>
-        <p class="menu-label">About</p>
+
+        <p class="menu-label">Productos y promociones</p>
         <ul class="menu-list">
             <li>
-                <a href="https://github.com/vikdiesel/admin-one-bulma-dashboard" target="_blank" class="has-icon">
-                    <span class="icon"><i class="mdi mdi-github-circle"></i></span>
-                    <span class="menu-item-label">GitHub</span>
+                <a class="has-icon has-dropdown-icon">
+                    <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+                    <span class="menu-item-label">Productos</span>
+                    <div class="dropdown-icon">
+                        <span class="icon"><i class="mdi mdi-plus"></i></span>
+                    </div>
                 </a>
+                <ul class="options-list" data-menu="productos">
+
+                </ul>
             </li>
             <li>
-                <a href="https://justboil.me/bulma-admin-template/free-html-dashboard/" class="has-icon">
-                    <span class="icon"><i class="mdi mdi-help-circle"></i></span>
-                    <span class="menu-item-label">About</span>
+                <a class="has-icon has-dropdown-icon">
+                    <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+                    <span class="menu-item-label">Promociones</span>
+                    <div class="dropdown-icon">
+                        <span class="icon"><i class="mdi mdi-plus"></i></span>
+                    </div>
                 </a>
+                <ul class="options-list" data-menu="promociones">
+
+                </ul>
             </li>
+
         </ul>
+
     </div>
 </aside>

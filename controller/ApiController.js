@@ -1,4 +1,4 @@
-import { ApiClientModel } from './ApiClientModel.js';
+import { ApiClientModel } from '../models/ApiModel.js';
 
 export class ApiController {
     constructor(token) {
