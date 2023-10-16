@@ -20,7 +20,8 @@ export class MenuController {
 
                 // Crear el elemento a
                 const elementA = document.createElement('a');
-                elementA.setAttribute('data-click', action + '-' + dataMenu);  // Usar dataMenu
+                elementA.classList.add('option');
+                elementA.setAttribute('data-route', action + '-' + dataMenu);  // Usar dataMenu
 
                 // Crear el elemento span y ponerle texto
                 const elementSpan = document.createElement('span');

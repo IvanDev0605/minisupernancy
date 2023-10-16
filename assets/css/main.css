@@ -15729,7 +15729,7 @@ nav.navbar .navbar-item .control .input::placeholder {
 
   html.has-aside-left.has-aside-expanded nav.navbar,
   html.has-aside-left.has-aside-expanded body {
-    padding-left: 14rem;
+    padding-left: 17rem;
   }
 
   html.has-aside-left nav.navbar,
@@ -15742,7 +15742,7 @@ nav.navbar .navbar-item .control .input::placeholder {
   }
 
   aside.aside.is-expanded {
-    width: 14rem;
+    width: 17em;
   }
 
   aside.aside.is-expanded .menu-list .icon {

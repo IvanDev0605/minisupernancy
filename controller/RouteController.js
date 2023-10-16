@@ -8,6 +8,7 @@ export class RouteController {
 
   handleMenuClick(event) {
     const targetRoute = event.target.getAttribute('data-route');
+
     if (targetRoute) {
       window.history.pushState({}, '', targetRoute);
       this.loadView();
@@ -38,7 +39,7 @@ export class RouteController {
   }
 
   loadDefaultView() {
-    this.fetchAndRender('views/default.html');
+    this.fetchAndRender('views/forms.html');
   }
 
   fetchAndRender(viewPath) {
