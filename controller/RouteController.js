@@ -6,8 +6,14 @@ export class RouteController {
 
 
 
-  handleMenuClick(event) {
-    const targetRoute = event.target.getAttribute('data-route');
+  handleMenuClick(action) {
+    console.log(action);
+
+    // Descomponer la acción en entidad y operación
+    const [operation, entity] = action.split('-');
+
+    // Construir la ruta del archivo basada en la entidad y la operación
+    const targetRoute = `/views/pages/${entity}/${operation}.html`;
 
     if (targetRoute) {
       window.history.pushState({}, '', targetRoute);
@@ -15,32 +21,14 @@ export class RouteController {
     }
   }
 
+
   loadView() {
     const currentPath = window.location.pathname;
-
-    switch (currentPath) {
-      case '/profile':
-        this.loadProfileView();
-        break;
-      case '/forms':
-        this.loadFormsView();
-        break;
-      default:
-        this.loadDefaultView();
-    }
+    this.fetchAndRender(currentPath);
   }
 
-  loadProfileView() {
-    this.fetchAndRender('views/profile.html');
-  }
 
-  loadFormsView() {
-    this.fetchAndRender('views/forms.html');
-  }
 
-  loadDefaultView() {
-    this.fetchAndRender('views/forms.html');
-  }
 
   fetchAndRender(viewPath) {
     fetch(viewPath)
