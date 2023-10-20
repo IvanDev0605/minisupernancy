@@ -11,7 +11,9 @@
 
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
 </head>
 
 <body>
@@ -31,8 +33,8 @@
 </body>
 
 
-<script type="text/javascript" src="../public/js/main.min.js"></script>
 <script type="text/javascript" src="../public/js/app.min.js"></script>
+<script defer type="text/javascript" src="../public/js/main.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <script type="text/javascript" src="../public/js/chart.sample.min.js"></script>
 

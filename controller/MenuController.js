@@ -8,13 +8,87 @@ export class MenuController {
         this.rutaMenu = "../../models/MenuModel.json";
         this.dataMenu;
     }
+
+    async renderMenu() {
+        const menuData = [
+            {
+                label: 'General',
+                items: [
+                    {
+                        icon: 'fas fa-tachometer-alt',
+                        text: 'Dashboard',
+                        isActive: true,
+                    },
+                ],
+            },
+            {
+                label: 'Usuarios y roles',
+                items: [
+                    {
+                        icon: 'fas fa-user',
+                        text: 'Usuarios',
+                    },
+                    {
+                        icon: 'fas fa-chart-pie',
+                        text: 'Roles',
+                    },
+                ],
+            },
+            {
+                label: 'Productos y Promociones',
+                items: [
+                    {
+                        icon: 'fas fa-edit',
+                        text: 'Productos',
+                    },
+                    {
+                        icon: 'fas fa-table',
+                        text: 'Promociones',
+                    },
+                ],
+            },
+            // ... más secciones aquí
+        ];
+
+        const menuDiv = document.querySelector('.menu.is-menu-main');
+        let menuHTML = '';
+
+        menuData.forEach((section) => {
+            menuHTML += `<p class="menu-label">${section.label}</p>`;
+            menuHTML += '<ul class="menu-list">';
+
+            section.items.forEach((item) => {
+
+                menuHTML += `
+              <li class>
+                <a class="has-icon has-dropdown-icon">
+                  <span class="icon"><i class="mdi ${item.icon}"></i></span>
+                  <span class="menu-item-label">${item.text}</span>
+                  <div class="dropdown-icon">
+                  <span class="icon"><i class="mdi fas fa-plus"></i></span>
+                  </div>
+                </a>
+                <ul class="options-list" data-menu="${item.text.toLowerCase()}">
+
+                </ul>
+              </li>
+            `;
+            });
+
+            menuHTML += '</ul>';
+        });
+
+        menuDiv.innerHTML = menuHTML;
+    }
+
     async buildMenu() {
+        await this.renderMenu();
         await this.getMenu(this.rutaMenu);
 
         $('.options-list').forEach(menuGroup => {
             const dataMenu = menuGroup.getAttribute('data-menu');  // Obtener el data-menu del grupo actual
 
-            ['Crear', 'Ver', 'Eliminar'].forEach(action => {
+            ['crear', 'ver', 'eliminar'].forEach(action => {
                 // Crear un nuevo elemento li por cada acción
                 const elementLI = document.createElement('li');
 

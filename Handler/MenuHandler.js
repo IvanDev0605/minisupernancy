@@ -9,11 +9,12 @@ const menuController = new MenuController();
 
 // Cuando se carga la página
 document.addEventListener("DOMContentLoaded", (async function () {
-
+    //  await menuController.renderMenu();
     await menuController.buildMenu();
     $('.option').on('click', function (Event) {
         routeController.handleMenuClick(this.getAttribute("data-route"));
     });
+
 })());
 
 
