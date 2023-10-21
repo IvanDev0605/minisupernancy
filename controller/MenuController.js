@@ -87,7 +87,7 @@ export class MenuController {
 
         $('.options-list').forEach(menuGroup => {
             const dataMenu = menuGroup.getAttribute('data-menu');  // Obtener el data-menu del grupo actual
-
+            if (dataMenu === "dashboard") return;  // Short-circuito si es "dashboard"
             ['crear', 'ver', 'eliminar'].forEach(action => {
                 // Crear un nuevo elemento li por cada acción
                 const elementLI = document.createElement('li');
