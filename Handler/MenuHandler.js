@@ -13,9 +13,18 @@ document.addEventListener("DOMContentLoaded", (async function () {
     await menuController.buildMenu();
     $('.option').on('click', function (Event) {
         routeController.handleMenuClick(this.getAttribute("data-route"));
+
+        //setear titulo en la vista
+        let originalText = this.getAttribute("data-route");
+        let splitText = originalText.split("-");
+        splitText[0] = splitText[0].charAt(0).toUpperCase() + splitText[0].slice(1);
+        let finalText = splitText.join(" ");
+        $("#title").text(finalText);
+
     });
 
 })());
+
 
 
 

@@ -12,7 +12,7 @@ export class MenuController {
     async renderMenu() {
         const menuData = [
             {
-                label: 'General',
+                label: '',
                 items: [
                     {
                         icon: 'fas fa-tachometer-alt',

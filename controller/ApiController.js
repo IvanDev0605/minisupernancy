@@ -45,5 +45,9 @@ export class ApiController {
         }
     }
 
-    // ... [otros métodos aquí]
+    getToken(){
+        
+    }
+
+
 }

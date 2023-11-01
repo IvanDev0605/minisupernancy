@@ -1,7 +1,5 @@
 import { DOMEventController } from '../controller/DOMEventController.js';
 import { ModalController } from '../controller/ModalController.js';
-// Ajusta la ruta según tu estructura.
-// Ajusta la ruta según tu estructura.
 import { ApiController } from '../controller/ApiController.js';
 
 // Aquí va el código de LoginServices.js

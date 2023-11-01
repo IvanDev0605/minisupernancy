@@ -2979,7 +2979,7 @@ th:not([align]) {
 }
 
 html {
-  background-color: #f8f8f8;
+  background-color: #f4f6f9;
   font-size: 16px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -8168,7 +8168,7 @@ print {
 
 .menu-list a {
   border-radius: 0;
-  color: #727c8f;
+  color: #c2c7d0;
   display: block;
   padding: 0.5rem 0;
 }
@@ -15772,7 +15772,7 @@ aside.aside {
   height: 100vh;
   padding: 0;
   box-shadow: none;
-  background: #2e323a;
+  background: #343a40;
 }
 
 aside.aside .aside-tools {
@@ -15951,7 +15951,7 @@ section.hero.is-hero-bar .hero-body .button.is-hero-button:hover {
 
 .card {
   border-radius: 6px;
-  border: 1px solid rgba(24, 28, 33, 0.06);
+  /*border: 1px solid rgba(24, 28, 33, 0.06);*/
 }
 
 .card.has-table .card-content {
@@ -16163,6 +16163,7 @@ select:active {
 
 section.section.is-main-section {
   padding: 1.5rem;
+  min-height: 69vh;
 }
 
 .modal-card {
@@ -16217,4 +16218,9 @@ footer.footer .logo img {
   right: 1px;
   background-color: hsl(44deg, 100%, 77%);
   border-radius: 9999px;
+}
+
+
+.has-shadow {
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
 }
