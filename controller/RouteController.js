@@ -1,42 +1,46 @@
+// Controlador de rutas para la gestión de vistas y navegación
 export class RouteController {
+  // Inicializa el controlador con la sección principal y la ruta actual
   constructor() {
     this.mainSection = document.querySelector('.section.is-main-section');
     this.currentPath = window.location.pathname;
   }
 
+  // Procesa el clic en el menú para navegar a la vista correspondiente
   handleMenuClick(action) {
-    console.log(action);
-
-    // Descomponer la acción en entidad y operación
     const [operation, entity] = action.split('-');
-
-    // Construir la ruta del archivo basada en la entidad y la operación
     const targetRoute = `/views/pages/${entity}/${operation}.html`;
-
-    // Construir la URL "limpia" para mostrar en la barra de direcciones
     const cleanURL = `/${entity}/${operation}`;
-
-    if (targetRoute) {
-      window.history.pushState({}, '', targetRoute);
-      this.loadView(targetRoute);  // Pasamos targetRoute como argumento
-    }
+    window.history.pushState({}, '', targetRoute);
+    this.loadView(targetRoute, cleanURL);
   }
 
-  loadView(targetRoute = window.location.pathname) {
-    // Si targetRoute es igual a una URL "limpia", convertirla a la ruta del archivo
-    if (!targetRoute.startsWith('/views/pages/')) {
-      const [_, entity, operation] = targetRoute.split('/');
-      targetRoute = `/views/pages/${entity}/${operation}`;
-    }
-
-    this.fetchAndRender(targetRoute);
+  // Carga la vista solicitada en la sección principal
+  loadView(targetRoute = window.location.pathname, cleanURL) {
+    const [_, entity, operation] = targetRoute.split('/');
+    targetRoute = `/views/pages/${entity}/${operation}.html`;
+    this.fetchAndRender(targetRoute, cleanURL);
   }
 
-  fetchAndRender(viewPath) {
+  // Obtiene el HTML de la vista y lo inyecta en la sección principal
+  fetchAndRender(viewPath, cleanURL) {
     fetch(viewPath)
       .then(response => response.text())
       .then(html => {
         this.mainSection.innerHTML = html;
+        return this.loadScriptForView(cleanURL);
+      })
+      .then(initFunction => {
+        if (initFunction) initFunction();
       });
+  }
+
+  // Carga el script asociado a la vista actual
+  loadScriptForView(cleanURL) {
+    const partes = cleanURL.split('/');
+    const [, vista, accion] = partes;
+    return import(`/Handler/${vista}Handler.js`)
+      .then(module => module.default)
+      .catch(error => console.error(`Error al cargar el script: ${vista}`, error));
   }
 }

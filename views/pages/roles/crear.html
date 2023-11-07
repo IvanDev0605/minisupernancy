@@ -5,7 +5,7 @@
                 <p class="card-header-title has-text-white">Crear Rol</p>
             </header>
             <div class="card-content">
-                <form id="content">
+                <form class="content">
                     <div class="field-input" data-label="Nombre del rol" data-type="text"
                         data-placeholder="Escribe el nombre del rol"></div>
 
@@ -23,7 +23,7 @@
                     </div>
                     <div class="field">
                         <div class="control">
-                            <button class="button is-link">Enviar</button>
+                            <a class="button is-link" id="loginButton">Enviar</a>
                         </div>
                     </div>
                 </form>
@@ -31,44 +31,3 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    // Encuentra el contenedor donde quieres insertar los nuevos campos
-    const container = document.getElementById('content');
-
-    // Encuentra todos los divs con la clase "field-input"
-    const fieldInputs = document.querySelectorAll('.field-input');
-
-    // Itera sobre cada div para crear los nuevos campos
-    fieldInputs.forEach((fieldInput) => {
-        // Extrae los atributos data
-        const label = fieldInput.getAttribute('data-label');
-        const type = fieldInput.getAttribute('data-type');
-        const placeholder = fieldInput.getAttribute('data-placeholder');
-
-        // Crea los elementos necesarios
-        const fieldDiv = document.createElement('div');
-        fieldDiv.className = 'field';
-
-        const labelElement = document.createElement('label');
-        labelElement.className = 'label';
-        labelElement.textContent = label;
-
-        const controlDiv = document.createElement('div');
-        controlDiv.className = 'control';
-
-        const inputElement = document.createElement('input');
-        inputElement.className = 'input';
-        inputElement.type = type;
-        inputElement.placeholder = placeholder;
-
-        // Anida los elementos
-        controlDiv.appendChild(inputElement);
-        fieldDiv.appendChild(labelElement);
-        fieldDiv.appendChild(controlDiv);
-
-        // Añade el nuevo campo al contenedor
-        container.appendChild(fieldDiv);
-    });
-</script>

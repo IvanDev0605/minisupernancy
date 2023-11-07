@@ -2,6 +2,7 @@ import { DOMEventController } from '../controller/DOMEventController.js';
 
 const $ = selector => new DOMEventController(selector);
 
+//controllador que se encarga de construir de formar visual el aside
 export class MenuController {
 
     constructor() {
