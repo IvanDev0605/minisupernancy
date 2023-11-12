@@ -9,22 +9,17 @@ export class RouteController {
   // Procesa el clic en el menú para navegar a la vista correspondiente
   handleMenuClick(action) {
     const [operation, entity] = action.split('-');
-    const targetRoute = `/views/pages/${entity}/${operation}.html`;
     const cleanURL = `/${entity}/${operation}`;
-    window.history.pushState({}, '', targetRoute);
-    this.loadView(targetRoute, cleanURL);
+    window.history.pushState({}, '', "views/" + cleanURL);
+    this.fetchAndRender(cleanURL);
   }
 
-  // Carga la vista solicitada en la sección principal
-  loadView(targetRoute = window.location.pathname, cleanURL) {
-    const [_, entity, operation] = targetRoute.split('/');
-    targetRoute = `/views/pages/${entity}/${operation}.html`;
-    this.fetchAndRender(targetRoute, cleanURL);
-  }
+
 
   // Obtiene el HTML de la vista y lo inyecta en la sección principal
-  fetchAndRender(viewPath, cleanURL) {
-    fetch(viewPath)
+  fetchAndRender(cleanURL) {
+
+    fetch("/views/pages/" + cleanURL)
       .then(response => response.text())
       .then(html => {
         this.mainSection.innerHTML = html;
