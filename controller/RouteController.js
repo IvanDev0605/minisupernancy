@@ -1,3 +1,4 @@
+import { InputController } from '../controller/InputController.js';
 // Controlador de rutas para la gestión de vistas y navegación
 export class RouteController {
   // Inicializa el controlador con la sección principal y la ruta actual
@@ -34,6 +35,9 @@ export class RouteController {
   loadScriptForView(cleanURL) {
     const partes = cleanURL.split('/');
     const [, vista, accion] = partes;
+
+    const controlador = new InputController('.field-input');
+    controlador.crearInputs();
     return import(`/Handler/${vista}Handler.js`)
       .then(module => module.default)
       .catch(error => console.error(`Error al cargar el script: ${vista}`, error));
