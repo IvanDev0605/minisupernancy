@@ -28,6 +28,9 @@ function initView() {
   };
   var api = new _controller_ApiController_js__WEBPACK_IMPORTED_MODULE_2__.ApiController();
   var modal = new _controller_ModalController_js__WEBPACK_IMPORTED_MODULE_1__.ModalController(); // Instancia de ModalController
+  crearRol();
+}
+function crearRol() {
   var submitButton = $('#loginButton');
   submitButton.on('click', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {

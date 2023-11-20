@@ -7,20 +7,25 @@ export default function initView() {
     const $ = selector => new DOMEventController(selector);
     const api = new ApiController();
     const modal = new ModalController(); // Instancia de ModalController
+    crearRol()
+
+}
+
+function crearRol() {
     const submitButton = $('#loginButton');
     submitButton.on('click', async (event) => {
         event.preventDefault();
 
-        const roleName = $('#rol').value();  
-        const roleDescription = $('#descripcion').value(); 
+        const roleName = $('#rol').value();
+        const roleDescription = $('#descripcion').value();
 
         try {
-            const requestBody = { 
-                nameType: roleName, 
-                descriptionType: roleDescription 
+            const requestBody = {
+                nameType: roleName,
+                descriptionType: roleDescription
             };
             const response = await api.post('tipoUsuario/registrar', requestBody);
-        
+
             if (response.isError) {
                 // Manejo de errores específicos de la API
                 console.error('Error al crear el rol:', response.message);
@@ -36,8 +41,7 @@ export default function initView() {
             console.error('Error al crear el rol:', error);
             modal.openModal('informative', { status: false, msg: error.message || 'Error al procesar la solicitud.' });
         }
-        
 
-      })
 
-    }
+    })
+}

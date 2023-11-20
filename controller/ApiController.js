@@ -34,12 +34,12 @@ export class ApiController {
             await this.getCsrfCookie();
             const headers = this.getHeaders(body);
             let payload;
-    
+
             if (body instanceof FormData) {
                 payload = body;
             } else {
                 payload = JSON.stringify(body);
-        
+
             }
             console.log(payload)
             return await this.apiClient.post(endpoint, headers, payload);
@@ -47,9 +47,18 @@ export class ApiController {
             throw new Error(`Failed to post: ${error.message}`);
         }
     }
-    
+
     getToken() {
         return localStorage.getItem('authToken'); // Asegúrate de que 'token' sea la clave correcta en localStorage
     }
-    
+
+
+    formatearRespuesta(data) {
+        let resultado = '';
+        for (const [clave, valor] of Object.entries(data)) {
+            resultado += `${clave}: ${valor}\n`; // Agrega cada par clave-valor con un salto de línea
+        }
+        return resultado.trim(); // Elimina el último salto de línea
+    }
+
 }
