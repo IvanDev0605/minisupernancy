@@ -8,6 +8,7 @@ export class InputController {
             // Obtener los atributos del div
             const label = div.getAttribute('data-label');
             const type = div.getAttribute('data-type');
+            const id = div.getAttribute("data-id");
             const placeholder = div.getAttribute('data-placeholder');
 
             // Crear el nuevo div con el input
@@ -24,7 +25,9 @@ export class InputController {
             const input = document.createElement('input');
             input.className = 'input';
             input.type = type;
+            input.id = id;
             input.placeholder = placeholder;
+
 
             // Armar la estructura
             controlDiv.appendChild(input);

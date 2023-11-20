@@ -28,26 +28,28 @@ export class ApiController {
     }
 
     async post(endpoint, body) {
+        console.log(body)
         try {
+            this.token = this.getToken(); // Actualiza el token
             await this.getCsrfCookie();
             const headers = this.getHeaders(body);
             let payload;
-
+    
             if (body instanceof FormData) {
                 payload = body;
             } else {
                 payload = JSON.stringify(body);
+        
             }
-
+            console.log(payload)
             return await this.apiClient.post(endpoint, headers, payload);
         } catch (error) {
             throw new Error(`Failed to post: ${error.message}`);
         }
     }
-
-    getToken(){
-        
+    
+    getToken() {
+        return localStorage.getItem('authToken'); // Asegúrate de que 'token' sea la clave correcta en localStorage
     }
-
-
+    
 }

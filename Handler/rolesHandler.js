@@ -2,24 +2,42 @@ import { DOMEventController } from '../controller/DOMEventController.js';
 import { ModalController } from '../controller/ModalController.js';
 import { ApiController } from '../controller/ApiController.js';
 
-// rolesHandler.js
 export default function initView() {
-    //instanciar generetorInputs
-    //instanciar eventos del Dom
-    const $ = selector => new DOMEventController(selector);
-
     console.log("Inicializando vista de roles");
-    $('#loginButton').on("click", () => console.log("Botón de login clickeado"));
-    // Configura aquí el resto de tus eventos y lógica inicial
-}
-//https://chat.openai.com/share/2fc302d2-7f6b-4e6a-ba1d-d389a8cb719e
-// // Aquí va el código de LoginServices.js
-// const $ = selector => new DOMEventController(selector);
-// const api = new ApiController();  // No necesitas un token al principio
-// // Instanciamos el controlador para que se aplique a los modales en la página
-// const modal = new ModalController();
+    const $ = selector => new DOMEventController(selector);
+    const api = new ApiController();
+    const modal = new ModalController(); // Instancia de ModalController
+    const submitButton = $('#loginButton');
+    submitButton.on('click', async (event) => {
+        event.preventDefault();
 
-// console.log("fdsf");
+        const roleName = $('#rol').value();  
+        const roleDescription = $('#descripcion').value(); 
 
+        try {
+            const requestBody = { 
+                nameType: roleName, 
+                descriptionType: roleDescription 
+            };
+            const response = await api.post('tipoUsuario/registrar', requestBody);
+        
+            if (response.isError) {
+                // Manejo de errores específicos de la API
+                console.error('Error al crear el rol:', response.message);
+                const errorsText = JSON.stringify(response.errors, null, 2);
+                modal.openModal('informative', { status: false, title: response.message, msg: errorsText });
+            } else {
+                // Manejo de éxito
+                console.log('Rol creado:', response);
+                const responseDataText = JSON.stringify(response.data, null, 2);
+                modal.openModal('informative', { status: true, title: response.message, msg: responseDataText });
+            }
+        } catch (error) {
+            console.error('Error al crear el rol:', error);
+            modal.openModal('informative', { status: false, msg: error.message || 'Error al procesar la solicitud.' });
+        }
+        
 
-// const click = $('#loginButton').on("click", console.log("dfszfvd")) 
+      })
+
+    }

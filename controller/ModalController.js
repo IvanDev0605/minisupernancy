@@ -40,7 +40,7 @@ export class ModalController {
     }
 
     infoModal(body) {
-        this.setTitle(body.status);
+        this.setTitle(body.status, body.title);
         this.setBody(body);
         this.setButtonModal();
     }
@@ -54,9 +54,9 @@ export class ModalController {
         });
     }
 
-    setTitle(status) {
+    setTitle(status, title) {
         // Usando la controladora para establecer texto
-        this.modalTitle.text(status ? "Éxito" : "Error");
+        this.modalTitle.text(status ?  title : title);
 
         this.header.addClass(status ? "has-background-success" : "has-background-warning")
         this.footer.addClass(status ? "has-background-success-light" : "has-background-warning-light")

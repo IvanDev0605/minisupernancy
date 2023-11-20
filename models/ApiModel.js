@@ -11,13 +11,17 @@ export class ApiClientModel {
             body,
             credentials: 'include'
         });
-
+    
+        const responseData = await response.json(); // Siempre obtenemos la respuesta JSON
+    
         if (!response.ok) {
-            throw new Error(`POST request failed: ${response.statusText}`);
+            // Agregamos un nuevo campo 'isError' para identificar fácilmente los errores
+            return { ...responseData, isError: true };
         }
-
-        return await response.json();
+    
+        return responseData;
     }
+    
 
     // ... [otros métodos HTTP aquí]
 }
