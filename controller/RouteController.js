@@ -11,10 +11,18 @@ export class RouteController {
   handleMenuClick(action) {
     const [operation, entity] = action.split('-');
     const cleanURL = `/${entity}/${operation}`;
-    window.history.pushState({}, '', "views/" + cleanURL);
+  
+    // Limpiar la URL actual para evitar duplicaciones
+    let currentURL = window.location.href;
+    currentURL = currentURL.replace(/views\/.*$/, '');
+  
+    // Construir y establecer la nueva URL
+    const newURL = currentURL + "views" + cleanURL;
+    window.history.pushState({}, '', newURL);
     this.fetchAndRender(cleanURL);
   }
-
+  
+  
 
 
   // Obtiene el HTML de la vista y lo inyecta en la sección principal
